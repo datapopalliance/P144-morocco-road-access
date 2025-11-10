@@ -713,21 +713,38 @@ def create_map(gdf, threshold, column_name,line_opacity=0.3):
     """
     m.get_root().html.add_child(folium.Element(legend_style))
         # Add interactive tooltips (clickable features)
-    folium.GeoJson(
-        gdf,
-        style_function=lambda feature: {
-            'fillColor': 'transparent',
-            'color': 'transparent',
-            'weight': 0,
-            'fillOpacity': 1
-        },
-        tooltip=folium.GeoJsonTooltip(
-            fields=[column_name, "Share_enclavée"],
-            aliases=[f"{column_name} :", "Taux d'enclavement :"],
-            localize=True,
-            sticky=False
-        )
-    ).add_to(m)
+    if "Multi_Pove" in gdf.columns.unique():
+        folium.GeoJson(
+            gdf,
+            style_function=lambda feature: {
+                'fillColor': 'transparent',
+                'color': 'transparent',
+                'weight': 0,
+                'fillOpacity': 1
+            },
+            tooltip=folium.GeoJsonTooltip(
+                fields=[column_name, "Share_enclavée","Multi_Pove"],
+                aliases=[f"{column_name} :", "Taux d'enclavement :","Pauvreté Multidimensionnelle :"],
+                localize=True,
+                sticky=False
+            )
+        ).add_to(m)
+    else:
+        folium.GeoJson(
+            gdf,
+            style_function=lambda feature: {
+                'fillColor': 'transparent',
+                'color': 'transparent',
+                'weight': 0,
+                'fillOpacity': 1
+            },
+            tooltip=folium.GeoJsonTooltip(
+                fields=[column_name, "Share_enclavée",],
+                aliases=[f"{column_name} :", "Taux d'enclavement :"],
+                localize=True,
+                sticky=False
+            )
+        ).add_to(m)
 
     # Move legend to upper-left using custom CSS
     legend_js = """
@@ -743,6 +760,24 @@ def create_map(gdf, threshold, column_name,line_opacity=0.3):
     """
     m.get_root().html.add_child(folium.Element(legend_js))
 
+    title_html = f'''
+    <div style="
+        position: fixed;
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 9999;
+        background: rgba(255,255,255,0.85);
+        padding: 6px 12px;
+        border-radius: 6px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+        font-size: 20px;
+        font-weight: 700;
+    ">
+    Taux d'enclavement (seuil &gt; {int(100*threshold)}%) par entité
+    </div>
+    '''
+    m.get_root().html.add_child(folium.Element(title_html))
     return m
 
 
