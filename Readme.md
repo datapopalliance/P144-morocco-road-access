@@ -19,12 +19,12 @@ Transportation accessibility is a crucial factor in equitable development and se
 ---
 
 ## 🗂️ Project Structure
-Road_Access/  
-├── Data/ # Input shapefiles, GeoJSONs, or road network data
-├── output/ # Folder to save output files
-├── Road_Access.ipynb # Jupyter notebooks for analysis and map export
-├── src/ # Python scripts and utilities
-├── requirements.txt # Environment dependencies
+morocco-road-access/  
+├── Data/ # Input geoparquet, or road network data  
+├── output/ # output folder
+├── Road_Access.ipynb/ # Jupyter notebooks for analysis and map export
+├── src/ # Python scripts and utilities  
+├── requirements.txt # Environment dependencies  
 └── README.md # Project documentation
 └── ors-config.yml # Configuration to set-up ORS Local Server
 
