@@ -42,8 +42,8 @@ Code implemented in Python 3.12
 Clone and go to repository
 
 ```
-$ git clone https://github.com/Mikmeh01/covid-risk-management.git
-$ cd covid-risk-management
+$ git clone https://github.com/datapopalliance/morocco-road-access.git
+$ cd morocco-road-access
 ```
 
 Create, activate environment and Install dependancies
