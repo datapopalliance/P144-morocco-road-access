@@ -724,10 +724,18 @@ def create_map(gdf, threshold, column_name,line_opacity=0.3):
                 'fillOpacity': 1
             },
             tooltip=folium.GeoJsonTooltip(
-                fields=[column_name, "Share_enclavée","Multi_Pove","Women_unemp"],
-                aliases=[f"{column_name} :", "Taux d'enclavement :","Pauvreté Multidimensionnelle :", "Taux de chômage féminin :"],
+                fields=[column_name, "Share_enclavée_%","Multi_Pove","Women_unemp"],
+                aliases=[f"{column_name} :", "Taux d'enclavement (%):","Pauvreté Multidimensionnelle :", "Taux de chômage féminin (%):"],
                 localize=True,
-                sticky=False
+                sticky=False,
+                style=(
+                "background-color: rgba(255, 255, 255, 0.9); "
+                "border: 1px solid #ccc; "
+                "border-radius: 5px; "
+                "padding: 8px; "
+                "font-size: 16px; "      # 👈 increase tooltip font size here
+                "font-weight: 500;"
+            )
             )
         ).add_to(m)
     else:
@@ -743,7 +751,15 @@ def create_map(gdf, threshold, column_name,line_opacity=0.3):
                 fields=[column_name, "Share_enclavée",],
                 aliases=[f"{column_name} :", "Taux d'enclavement :"],
                 localize=True,
-                sticky=False
+                sticky=False,
+                style=(
+                "background-color: rgba(255, 255, 255, 0.9); "
+                "border: 1px solid #ccc; "
+                "border-radius: 5px; "
+                "padding: 8px; "
+                "font-size: 16px; "      # 👈 increase tooltip font size here
+                "font-weight: 500;"
+            )
             )
         ).add_to(m)
 
