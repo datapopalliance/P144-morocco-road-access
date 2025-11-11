@@ -714,7 +714,7 @@ def create_map(gdf, threshold, column_name,line_opacity=0.3):
     """
     m.get_root().html.add_child(folium.Element(legend_style))
         # Add interactive tooltips (clickable features)
-    if "Multi_Pove" in gdf.columns.unique():
+    if ("Multi_Pove" in gdf.columns.unique())&("Women_unemp" in gdf.columns.unique()) :
         folium.GeoJson(
             gdf_,
             style_function=lambda feature: {
@@ -724,8 +724,8 @@ def create_map(gdf, threshold, column_name,line_opacity=0.3):
                 'fillOpacity': 1
             },
             tooltip=folium.GeoJsonTooltip(
-                fields=[column_name, "Share_enclavée","Multi_Pove"],
-                aliases=[f"{column_name} :", "Taux d'enclavement :","Pauvreté Multidimensionnelle :"],
+                fields=[column_name, "Share_enclavée","Multi_Pove","Women_unemp"],
+                aliases=[f"{column_name} :", "Taux d'enclavement :","Pauvreté Multidimensionnelle :", "Taux de chômage féminin :"],
                 localize=True,
                 sticky=False
             )
